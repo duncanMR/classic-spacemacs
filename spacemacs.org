@@ -2,3 +2,50 @@
 #+AUTHOR: Duncan Mbuli-Robertson
 #+EMAIL: duncanr19@gmail.com
 
+
+* User configuration
+This loads after all the layers. Note: Q,U are not used by Evil!
+
+** Appearance
+Customise some solarized parameters
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+          (setq solarized-distinct-fringe-background t)
+          (setq solarized-emphasize-indicators t)
+          (setq solarized-use-less-bold t)
+          (setq solarized-high-contrast-mode-line nil)
+#+END_SRC
+
+Tweak solarized to make the mode line highlight in active window, from [[http://philipdaniels.com/blog/2017/02/spacemacs---configuring-the-solarized-theme/][this blog post]] 
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+   (setq theming-modifications '((solarized-dark
+                                  ;; Provide a sort of "on-off" modeline whereby the current buffer has a nice
+                                  ;; bright blue background, and all the others are in cream. 
+                                  ;; TODO: Change to use variables here. However, got error:
+                                  ;; (Spacemacs) Error in dotspacemacs/user-config: Wrong type argument: stringp, pd-blue 
+                                  (mode-line :foreground "#ccd5d7" :background "#2075c7" :inverse-video nil)
+                                  (mode-line-buffer-id :foreground "White")
+                                  (mode-line-buffer-id-inactive :foreground "#002b36")
+                                  (powerline-active0 :foreground "#ccd5d7" :background "#002b36" :inverse-video nil) 
+                                  (powerline-active1 :foreground "#ccd5d7" :background "#2075c7" :inverse-video nil) 
+                                  (powerline-active2 :foreground "#ccd5d7" :background "#2075c7" :inverse-video nil)
+                                  (mode-line-inactive :foreground "#2075c7" :background "#ccd5d7" :inverse-video nil)
+                                  (powerline-inactive1 :foreground "#2075c7" :background "#ccd5d7" :inverse-video nil)
+                                  (powerline-inactive2 :foreground "#2075c7" :background "#ccd5d7" :inverse-video nil)
+                                  (org-level-1 :height 1.2)
+                                  (org-level-2 :height 1.15)
+                                  (org-level-3 :height 1.1)
+                                  (org-level-4 :height 1.1)
+                                  (org-level-5 :height 1.1)
+                                  (org-level-6 :height 1.1)
+                                  ;; See comment above about dotspacemacs-colorize-cursor-according-to-state.
+                                  (cursor :background "#b58900")
+                                  ;; change colour of latex math to be more legible
+                                  (font-latex-math-face :foreground "#268bd2")
+                                  )))
+   ;;       (set-terminal-parameter nil 'background-mode 'dark) 
+   ;;      (set-frame-parameter nil 'background-mode 'dark)
+   (setq powerline-default-separator 'arrow)
+   (setq spaceline-minor-modes-p nil)
+  (spacemacs/load-theme 'solarized-dark)
+   ;;  (spacemacs/load-theme 'solarized) 
+#+END_SRC
