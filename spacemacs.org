@@ -49,3 +49,21 @@ Tweak solarized to make the mode line highlight in active window, from [[http://
   (spacemacs/load-theme 'solarized-dark)
    ;;  (spacemacs/load-theme 'solarized) 
 #+END_SRC
+
+** Global key rebindings
+Prevent accidental C-z from messing up document
+ #+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+   (define-key evil-motion-state-map (kbd "C-z") 'undo)
+#+END_SRC
+
+Change f-e-d to open config org file instead of init.el, which is now set to a different hotkey
+ #+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+   (defun my/find-config ()
+     (interactive)(find-file "~/.spacemacs.d/spacemacs.org"))
+
+   (spacemacs/set-leader-keys 
+      "fed"   'my/find-config
+      "fei"   'spacemacs/find-dotfile
+      ) 
+
+ #+END_SRC
