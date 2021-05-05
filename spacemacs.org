@@ -5,7 +5,17 @@
 
 * User configuration
 This loads after all the layers. Note: Q,U are not used by Evil!
+** Misc fixes
+  Add pyenv to exec-path to allow elpy to see python executable
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+(add-to-list 'exec-path "~/.pyenv/bin")
+(add-to-list 'exec-path "~/.pyenv/shims/python")
+#+END_SRC
 
+Remove warnings that don't matter 
+#+BEGIN_SRC emacs-lisp :tangle user-init.el :results output silent
+(setq byte-compile-warnings '(cl-functions))
+#+END_SRC
 ** Appearance
 Customise some solarized parameters
 #+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
@@ -67,3 +77,24 @@ Change f-e-d to open config org file instead of init.el, which is now set to a d
       ) 
 
  #+END_SRC
+
+** Language layer configuration
+*** Python
+ Stop annoying guess offset indent message and set pyenv python version. I would
+ prefer to have elpy recognise the project local pyenv environment but I
+ couldn't get this to work and don't have time to sort it out. This will do for
+ now.
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+  (with-eval-after-load 'python
+    (setq python-indent-guess-indent-offset nil)
+    (pyvenv-activate "~/.pyenv/versions/3.9.4")
+    )
+#+END_SRC
+
+Automatically format code with Black on save
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+  (add-hook 'python-mode-hook 
+       (lambda () 
+         (add-hook 'after-save-hook 'elpy-black-fix-code nil t)))
+#+END_SRC
+
