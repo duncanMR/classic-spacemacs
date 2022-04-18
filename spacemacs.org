@@ -98,3 +98,23 @@ Automatically format code with Black on save
          (add-hook 'after-save-hook 'elpy-black-fix-code nil t)))
 #+END_SRC
 
+
+** Org-mode configuration
+*** Babel
+Remove the confirmation messages for codeblocks and initialise language support:
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+(setq org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (jupyter . t)
+     )
+)
+#+END_SRC
+
+
+Set TAB to work like it would in the code block language.
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+(setq org-src-tab-acts-natively t)
+#+END_SRC 
+ 
