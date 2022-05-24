@@ -79,6 +79,19 @@ Change f-e-d to open config org file instead of init.el, which is now set to a d
  #+END_SRC
 
 ** Language layer configuration
+*** Snippets
+Set up snippets hotkeys:
+ #+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+   ;(spacemacs/set-leader-keys "RET" 'hippie-expand)
+     (global-set-key (kbd "C-;") 'hippie-expand)
+ #+END_SRC
+
+Set custom snippets directory for adding snippets:
+#+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
+(setq yas-snippet-dirs '("~/.spacemacs.d/snippets"))
+#+END_SRC
+
+
 *** Python
  Stop annoying guess offset indent message and set pyenv python version. I would
  prefer to have elpy recognise the project local pyenv environment but I
@@ -103,13 +116,15 @@ Automatically format code with Black on save
 *** Babel
 Remove the confirmation messages for codeblocks and initialise language support:
 #+BEGIN_SRC emacs-lisp :tangle user-config.el :results output silent
-(setq org-confirm-babel-evaluate nil)
-(org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (jupyter . t)
-     )
-)
+  (setq org-confirm-babel-evaluate nil)
+  (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (jupyter . t)
+       (shell . t)
+       (emacs-lisp . t)
+       )
+  )
 #+END_SRC
 
 
