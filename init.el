@@ -40,6 +40,7 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      auto-completion
      ;; better-defaults
+     ess
      emacs-lisp
      git
      helm
@@ -48,14 +49,16 @@ This function should only modify configuration layer settings."
      ;; markdown
      multiple-cursors
      ;; org
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+           shell-default-height 40
+           shell-default-position 'bottom
+           shell-default-shell 'vterm
+           shell-default-term-shell "/bin/zsh")
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
      treemacs
-     elpy
+     python
      )
 
    ;; List of additional packages that will be installed without being wrapped

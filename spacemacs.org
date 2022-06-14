@@ -48,8 +48,6 @@ Tweak solarized to make the mode line highlight in active window, from [[http://
                                   (org-level-5 :height 1.1)
                                   (org-level-6 :height 1.1)
                                   ;; See comment above about dotspacemacs-colorize-cursor-according-to-state.
-                                  (cursor :background "#b58900")
-                                  ;; change colour of latex math to be more legible
                                   (font-latex-math-face :foreground "#268bd2")
                                   )))
    ;;       (set-terminal-parameter nil 'background-mode 'dark) 
@@ -123,6 +121,7 @@ Remove the confirmation messages for codeblocks and initialise language support:
        (jupyter . t)
        (shell . t)
        (emacs-lisp . t)
+       (R . t)
        )
   )
 #+END_SRC
